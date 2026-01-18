@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body">
+    <form action="/submit-registration" methode="POST">
+        <h2 style="color: rgb(10, 49, 223); background-color: rgb(221, 230, 221); text-align: center;">Registration From </h2>
+        <label> Full Name:</label><br>
+        <input type="text" placeholder="Enter your Name "><br><br>
+        <label >Email:</label><br>
+        <input type="email"><br><br>
+        <label >Password</label><br>
+        <input required><br> <br>
+        <Label>Gender</Label><br>
+        <input type="radio"name="gender"required>
+        <label for="male">Male</label>
+        <input type="radio"name="gender"required>
+         <label for="female">Female</label>
+         <input type="radio"name="gender"required>
+         <label for="other">Other</label><br><br>
+
+         <label>DOB</label><br>
+         <input type="date "required> <br><br>
+         <label>Phone Number</label><br>
+         <input type="tel"required> <br><br>
+         <label>Country</label><br>
+         <select>
+         <option value="">--Select--</option>
+         <option value="india">india</option>
+         <option value="usa">usa</option>
+         </select><br><br>
+         <label>Hobbies</label><br>
+         <input type="checkbox" name="Hobbies" id="sport">
+
+         <label for="sports">Sports</label>
+         <input type="checkbox" name="Hobbies" id="reading">
+         <label for="reading">Reading</label>
+         <input type="checkbox" name="Hobbies" id="traveling">
+         <label for="traveling">Traveling</label><br><br>
+         <label>Short bio:</label><br>
+         <textarea rows="4" cols="50 placeholder="tell the something about yourslf........></textarea>><br>
+
+         <input type="submit" value="Registration">
+    </form>
+    </body>
+</html>
+</body>
+</html>
