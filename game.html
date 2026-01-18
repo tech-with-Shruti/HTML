@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Catch the Box Game</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f0f0f0;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      margin-top: 50px;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    .info {
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+
+    .game-area {
+      position: relative;
+      width: 400px;
+      height: 400px;
+      margin: 0 auto;
+      background-color: #fff;
+      border: 2px solid #ccc;
+      overflow: hidden;
+      border-radius: 10px;
+    }
+
+    .box {
+      width: 50px;
+      height: 50px;
+      background-color: crimson;
+      position: absolute;
+      top: 100px;
+      left: 100px;
+      cursor: pointer;
+      display: none;
+      border-radius: 5px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 18px;
+      background-color: teal;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: darkcyan;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Catch the Box 🎯</h1>
+    <div class="info">
+      <span>Time: <span id="time">30</span>s</span>
+      <span>Score: <span id="score">0</span></span>
+    </div>
+    <div class="game-area" id="gameArea">
+      <div class="box" id="box"></div>
+    </div>
+    <button id="startBtn">Start Game</button>
+  </div>
+
+  <script>
+    const box = document.getElementById("box");
+    const scoreEl = document.getElementById("score");
+    const timeEl = document.getElementById("time");
+    const gameArea = document.getElementById("gameArea");
+    const startBtn = document.getElementById("startBtn");
+
+    let score = 0;
+    let timeLeft = 30;
+    let timer;
+    let gameRunning = false;
+
+    function randomPosition() {
+      const maxX = gameArea.clientWidth - box.clientWidth;
+      const maxY = gameArea.clientHeight - box.clientHeight;
+      const x = Math.floor(Math.random() * maxX);
+      const y = Math.floor(Math.random() * maxY);
+      box.style.left = `${x}px`;
+      box.style.top = `${y}px`;
+    }
+
+    function startGame() {
+      score = 0;
+      timeLeft = 30;
+      scoreEl.textContent = score;
+      timeEl.textContent = timeLeft;
+      box.style.display = "block";
+      gameRunning = true;
+
+      randomPosition();
+      timer = setInterval(() => {
+        timeLeft--;
+        timeEl.textContent = timeLeft;
+
+        if (timeLeft <= 0) {
+          endGame();
+        } else {
+          randomPosition();
+        }
+      }, 1000);
+    }
+
+    function endGame() {
+      clearInterval(timer);
+      box.style.display = "none";
+      gameRunning = false;
+      alert(`⏰ Time's up! Your score: ${score}`);
+    }
+
+    box.addEventListener("click", () => {
+      if (!gameRunning) return;
+      score++;
+      scoreEl.textContent = score;
+      randomPosition();
+    });
+
+    startBtn.addEventListener("click", () => {
+      if (!gameRunning) {
+        startGame();
+      }
+    });
+  </script>
+</body>
+</html>
